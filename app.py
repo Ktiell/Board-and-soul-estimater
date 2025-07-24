@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# Set page config
+# Page config
 st.set_page_config(page_title="Board & Soul Estimator", layout="centered")
 
-# Inject custom CSS for branding
+# Custom styling
 st.markdown("""
 <style>
 body {
@@ -25,23 +25,18 @@ hr {
     border-top: 1px solid #ccc;
     margin: 1rem 0;
 }
-.stButton>button {
+.stButton>button, .stDownloadButton>button {
     background-color: #4f6f52;
     color: white;
     border-radius: 8px;
     padding: 0.5rem 1rem;
     border: none;
 }
-.stDownloadButton>button {
-    background-color: #4f6f52;
-    color: white;
-    border-radius: 8px;
-}
 </style>
 """, unsafe_allow_html=True)
 
-# Logo and Title
-st.image("https://i.imgur.com/fMMms9B.png", width=200)
+# Logo
+st.image("https://i.imgur.com/o9PXEVF.png", width=200)  # WORKING logo link
 st.markdown("<h1 style='text-align: center; margin-bottom: 0;'>Board & Soul Estimator</h1>", unsafe_allow_html=True)
 st.markdown("<hr style='margin-top: 0;'>", unsafe_allow_html=True)
 
@@ -58,5 +53,9 @@ project_templates = {
     "Table": {"length": 48, "width": 30, "thickness": 1.5, "time": 3.0},
 }
 
-# Sidebar inputs
-st.sidebar
+# Sidebar
+st.sidebar.header("Project Details")
+project_type = st.sidebar.selectbox("Project Type", list(project_templates.keys()))
+wood_type = st.sidebar.selectbox("Wood Type", list(wood_types.keys()))
+
+default = project_templates[project_type]
